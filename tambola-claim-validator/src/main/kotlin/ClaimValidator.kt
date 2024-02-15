@@ -4,14 +4,12 @@ class ClaimValidator(private val ticket: List<List<Int>>) {
         val topRowElements = ticket[0].toSet()
         var count = 0
 
-        val currentIndexNumbersAnnounced = 0
-
         numbersAnnounced.forEachIndexed { index, value ->
             if (value in topRowElements) {
                 count++
             }
             if (count == topRowElements.size) {
-                return currentIndexNumbersAnnounced != (numbersAnnounced.size - 1)
+                return index == (numbersAnnounced.size - 1)
             }
         }
 
