@@ -7,7 +7,7 @@ import Constants.TicketConstants.BOTTOM_ROW_INDEX
 import Constants.TicketConstants.MIDDLE_ROW_INDEX
 import Constants.TicketConstants.TOP_ROW_INDEX
 
-class ClaimValidator(ticket: List<List<Int>>) {
+class ClaimValidator(private val ticket: List<List<Int>>) {
 
     private val topRowElements = ticket[TOP_ROW_INDEX].toSet()
     private val middleRowElements = ticket[MIDDLE_ROW_INDEX].toSet()
@@ -15,45 +15,14 @@ class ClaimValidator(ticket: List<List<Int>>) {
 
     private val allElements = topRowElements + middleRowElements + bottomRowElements
 
-    private fun topRowValidator(numbersAnnounced: List<Int>): Boolean {
+    private fun rowWiseValidator(row: Int, numbersAnnounced: List<Int>): Boolean {
         var count = 0
 
         numbersAnnounced.forEachIndexed { index, value ->
-            if (value in topRowElements) {
+            if (value in ticket[row]) {
                 count++
             }
-            if (count == topRowElements.size) {
-                return index == (numbersAnnounced.size - 1)
-            }
-        }
-
-        return false
-    }
-
-
-    private fun middleRowValidator(numbersAnnounced: List<Int>): Boolean {
-        var count = 0
-
-        numbersAnnounced.forEachIndexed { index, value ->
-            if (value in middleRowElements) {
-                count++
-            }
-            if (count == middleRowElements.size) {
-                return index == (numbersAnnounced.size - 1)
-            }
-        }
-
-        return false
-    }
-
-    private fun bottomRowValidator(numbersAnnounced: List<Int>): Boolean {
-        var count = 0
-
-        numbersAnnounced.forEachIndexed { index, value ->
-            if (value in bottomRowElements) {
-                count++
-            }
-            if (count == bottomRowElements.size) {
+            if (count == ticket[row].size) {
                 return index == (numbersAnnounced.size - 1)
             }
         }
@@ -93,9 +62,9 @@ class ClaimValidator(ticket: List<List<Int>>) {
 
     fun validate(numbersAnnounced: List<Int>, claim: String) =
         when (claim) {
-            TOP_ROW -> topRowValidator(numbersAnnounced)
-            MIDDLE_ROW -> middleRowValidator(numbersAnnounced)
-            BOTTOM_ROW -> bottomRowValidator(numbersAnnounced)
+            TOP_ROW -> rowWiseValidator(TOP_ROW_INDEX,numbersAnnounced)
+            MIDDLE_ROW -> rowWiseValidator(MIDDLE_ROW_INDEX, numbersAnnounced)
+            BOTTOM_ROW -> rowWiseValidator(BOTTOM_ROW_INDEX, numbersAnnounced)
             FIRST_FIVE -> firstFiveValidator(numbersAnnounced)
             FULL_HOUSE -> fullHouseValidator(numbersAnnounced)
             else -> throw Exception("Invalid claim made")
