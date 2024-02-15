@@ -146,7 +146,7 @@ class TambolaTest {
 
     @Test
     fun `invalid claim should throw Exception`() {
-        val ticket = listOf(listOf<Int>())
+        val ticket = listOf(listOf(1, 2, 3), listOf(4, 5, 5), listOf(7, 8, 9))
         val numbersAnnounced = listOf(1, 2, 3, 4)
         val claimMade = "SOME_CLAIM_THAT_DOES_NOT_EXIST"
         assertThrows<Exception> {

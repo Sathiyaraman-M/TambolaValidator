@@ -68,13 +68,12 @@ class ClaimValidator(ticket: List<List<Int>>) {
         return false
     }
 
-    fun validate(numbersAnnounced: List<Int>, claim: String): Boolean {
-        return when (claim) {
+    fun validate(numbersAnnounced: List<Int>, claim: String) =
+        when (claim) {
             TOP_ROW -> topRowValidator(numbersAnnounced)
             BOTTOM_ROW -> bottomRowValidator(numbersAnnounced)
             FIRST_FIVE -> firstFiveValidator(numbersAnnounced)
             else -> throw Exception("Invalid claim made")
         }
-    }
 
 }
