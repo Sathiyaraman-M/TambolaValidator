@@ -17,16 +17,7 @@ class ClaimValidator(ticket: List<List<Int>>) {
     private val middleRowElements = ticket[MIDDLE_ROW_INDEX].toSet()
     private val bottomRowElements = ticket[BOTTOM_ROW_INDEX].toSet()
 
-    private val allElements = mutableSetOf<Int>()
-
-    init {
-        ticket.forEach { row ->
-            row.forEach {
-                allElements.add(it)
-            }
-        }
-    }
-
+    private val allElements = topRowElements + middleRowElements + bottomRowElements
 
     private fun topRowValidator(numbersAnnounced: List<Int>): Boolean {
         var count = ZERO
