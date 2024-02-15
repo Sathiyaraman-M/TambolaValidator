@@ -73,7 +73,7 @@ class ClaimValidator(ticket: List<List<Int>>) {
             TOP_ROW -> topRowValidator(numbersAnnounced)
             BOTTOM_ROW -> bottomRowValidator(numbersAnnounced)
             FIRST_FIVE -> firstFiveValidator(numbersAnnounced)
-            else -> false
+            else -> throw Exception("Invalid claim made")
         }
     }
 

@@ -4,6 +4,7 @@ import Constants.ClaimConstants.TOP_ROW
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class TambolaTest {
 
@@ -141,6 +142,16 @@ class TambolaTest {
 
         val result = ClaimValidator(ticket).validate(numbersAnnounced, claimMade)
         assertFalse(result)
+    }
+
+    @Test
+    fun `invalid claim should throw Exception`() {
+        val ticket = listOf(listOf<Int>())
+        val numbersAnnounced = listOf(1, 2, 3, 4)
+        val claimMade = "SOME_CLAIM_THAT_DOES_NOT_EXIST"
+        assertThrows<Exception> {
+            ClaimValidator(ticket).validate(numbersAnnounced, claimMade)
+        }
     }
 
 }
