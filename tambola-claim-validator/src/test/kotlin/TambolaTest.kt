@@ -65,4 +65,19 @@ class TambolaTest {
         assertFalse(result)
     }
 
+    @Test
+    fun `player made claim of first five immediately after crossing the first five elements should be accepted`() {
+        val ticket = listOf(
+            listOf(4, 16, 48, 63, 76),
+            listOf(7, 23, 38, 52, 80),
+            listOf(9, 25, 56, 64, 83)
+        )
+
+        val numbersAnnounced = listOf(11, 12, 4, 23, 38, 23, 24, 25, 47, 48)
+        val claimMade = "FIRST_FIVE"
+
+        val result = ClaimValidator(ticket).validate(numbersAnnounced, claimMade)
+        assertFalse(result)
+    }
+
 }
