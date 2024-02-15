@@ -2,7 +2,18 @@ class ClaimValidator(private val ticket: List<List<Int>>) {
 
     private fun topRowValidator(numbersAnnounced: List<Int>): Boolean {
         val topRowElements = ticket[0].toSet()
-        val count = 0
+        var count = 0
+
+        val currentIndexNumbersAnnounced = 0
+
+        numbersAnnounced.forEachIndexed { index, value ->
+            if (value in topRowElements) {
+                count++
+            }
+            if (count == topRowElements.size) {
+                return false
+            }
+        }
 
         return false
     }
