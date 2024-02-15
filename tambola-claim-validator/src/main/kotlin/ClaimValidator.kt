@@ -3,10 +3,6 @@ import Constants.ClaimConstants.FIRST_FIVE
 import Constants.ClaimConstants.FULL_HOUSE
 import Constants.ClaimConstants.MIDDLE_ROW
 import Constants.ClaimConstants.TOP_ROW
-import Constants.NumericConstants.FIFTEEN
-import Constants.NumericConstants.FIVE
-import Constants.NumericConstants.ONE
-import Constants.NumericConstants.ZERO
 import Constants.TicketConstants.BOTTOM_ROW_INDEX
 import Constants.TicketConstants.MIDDLE_ROW_INDEX
 import Constants.TicketConstants.TOP_ROW_INDEX
@@ -20,14 +16,14 @@ class ClaimValidator(ticket: List<List<Int>>) {
     private val allElements = topRowElements + middleRowElements + bottomRowElements
 
     private fun topRowValidator(numbersAnnounced: List<Int>): Boolean {
-        var count = ZERO
+        var count = 0
 
         numbersAnnounced.forEachIndexed { index, value ->
             if (value in topRowElements) {
                 count++
             }
             if (count == topRowElements.size) {
-                return index == (numbersAnnounced.size - ONE)
+                return index == (numbersAnnounced.size - 1)
             }
         }
 
@@ -36,14 +32,14 @@ class ClaimValidator(ticket: List<List<Int>>) {
 
 
     private fun middleRowValidator(numbersAnnounced: List<Int>): Boolean {
-        var count = ZERO
+        var count = 0
 
         numbersAnnounced.forEachIndexed { index, value ->
             if (value in middleRowElements) {
                 count++
             }
             if (count == middleRowElements.size) {
-                return index == (numbersAnnounced.size - ONE)
+                return index == (numbersAnnounced.size - 1)
             }
         }
 
@@ -51,14 +47,14 @@ class ClaimValidator(ticket: List<List<Int>>) {
     }
 
     private fun bottomRowValidator(numbersAnnounced: List<Int>): Boolean {
-        var count = ZERO
+        var count = 0
 
         numbersAnnounced.forEachIndexed { index, value ->
             if (value in bottomRowElements) {
                 count++
             }
             if (count == bottomRowElements.size) {
-                return index == (numbersAnnounced.size - ONE)
+                return index == (numbersAnnounced.size - 1)
             }
         }
 
@@ -66,14 +62,14 @@ class ClaimValidator(ticket: List<List<Int>>) {
     }
 
     private fun firstFiveValidator(numbersAnnounced: List<Int>): Boolean {
-        var count = ZERO
+        var count = 0
 
         numbersAnnounced.forEachIndexed { index, value ->
             if (value in allElements) {
                 count++
             }
-            if (count == FIVE) {
-                return index == (numbersAnnounced.size - ONE)
+            if (count == 5) {
+                return index == (numbersAnnounced.size - 1)
             }
         }
 
@@ -81,14 +77,14 @@ class ClaimValidator(ticket: List<List<Int>>) {
     }
 
     private fun fullHouseValidator(numbersAnnounced: List<Int>): Boolean {
-        var count = ZERO
+        var count = 0
 
         numbersAnnounced.forEachIndexed { index, value ->
             if (value in allElements) {
                 count++
             }
-            if (count == FIFTEEN) {
-                return index == (numbersAnnounced.size - ONE)
+            if (count == 15) {
+                return index == (numbersAnnounced.size - 1)
             }
         }
 
