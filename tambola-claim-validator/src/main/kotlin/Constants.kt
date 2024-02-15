@@ -12,6 +12,7 @@ object Constants {
         const val ONE = 1
         const val TWO = 2
         const val FIVE = 5
+        const val FIFTEEN = 15
     }
 
     object TicketConstants {
