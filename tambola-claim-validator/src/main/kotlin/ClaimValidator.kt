@@ -11,7 +11,7 @@ class ClaimValidator(private val ticket: List<List<Int>>) {
                 count++
             }
             if (count == topRowElements.size) {
-                return false
+                return currentIndexNumbersAnnounced != (numbersAnnounced.size - 1)
             }
         }
 
