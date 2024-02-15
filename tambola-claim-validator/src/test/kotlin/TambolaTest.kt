@@ -1,5 +1,6 @@
 import Constants.ClaimConstants.BOTTOM_ROW
 import Constants.ClaimConstants.FIRST_FIVE
+import Constants.ClaimConstants.MIDDLE_ROW
 import Constants.ClaimConstants.TOP_ROW
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -48,6 +49,51 @@ class TambolaTest {
 
         val numbersAnnounced = listOf(1, 2, 3, 4, 5, 6)
         val claimMade = TOP_ROW
+
+        val result = ClaimValidator(ticket).validate(numbersAnnounced, claimMade)
+        assertFalse(result)
+    }
+
+    @Test
+    fun `player made claim of middle row immediately after crossing all the elements of middle row should be accepted`() {
+        val ticket = listOf(
+            listOf(4, 16, 48, 63, 76),
+            listOf(7, 23, 38, 52, 80),
+            listOf(9, 25, 56, 64, 83)
+        )
+
+        val numbersAnnounced = listOf(23, 84, 7, 82, 52, 38, 48, 80)
+        val claimMade = MIDDLE_ROW
+
+        val result = ClaimValidator(ticket).validate(numbersAnnounced, claimMade)
+        assertTrue(result)
+    }
+
+    @Test
+    fun `player made claim of middle row after missing to claim immediately after crossing the elements of middle row should be rejected`() {
+        val ticket = listOf(
+            listOf(4, 16, 48, 63, 76),
+            listOf(7, 23, 38, 52, 80),
+            listOf(9, 25, 56, 64, 83)
+        )
+
+        val numbersAnnounced = listOf(23, 84, 7, 82, 52, 38, 48, 80, 12)
+        val claimMade = MIDDLE_ROW
+
+        val result = ClaimValidator(ticket).validate(numbersAnnounced, claimMade)
+        assertFalse(result)
+    }
+
+    @Test
+    fun `player made false claim of middle row should be rejected`() {
+        val ticket = listOf(
+            listOf(4, 16, 48, 63, 76),
+            listOf(7, 23, 38, 52, 80),
+            listOf(9, 25, 56, 64, 83)
+        )
+
+        val numbersAnnounced = listOf(1, 2, 3, 4, 5, 6)
+        val claimMade = MIDDLE_ROW
 
         val result = ClaimValidator(ticket).validate(numbersAnnounced, claimMade)
         assertFalse(result)
