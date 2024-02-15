@@ -1,5 +1,6 @@
 import Constants.ClaimConstants.BOTTOM_ROW
 import Constants.ClaimConstants.FIRST_FIVE
+import Constants.ClaimConstants.FULL_HOUSE
 import Constants.ClaimConstants.MIDDLE_ROW
 import Constants.ClaimConstants.TOP_ROW
 import org.junit.jupiter.api.Assertions.assertFalse
@@ -185,6 +186,51 @@ class TambolaTest {
 
         val numbersAnnounced = listOf(1, 2, 3, 4, 5, 6)
         val claimMade = FIRST_FIVE
+
+        val result = ClaimValidator(ticket).validate(numbersAnnounced, claimMade)
+        assertFalse(result)
+    }
+
+    @Test
+    fun `player made claim of full house immediately after crossing all the elements should be accepted`() {
+        val ticket = listOf(
+            listOf(4, 16, 48, 63, 76),
+            listOf(7, 23, 38, 52, 80),
+            listOf(9, 25, 56, 64, 83)
+        )
+
+        val numbersAnnounced = listOf(11, 12, 4, 23, 38, 23, 24, 25, 47, 48, 7, 16, 9, 52, 56, 57, 64, 60, 63, 76, 77, 79, 80, 83)
+        val claimMade = FULL_HOUSE
+
+        val result = ClaimValidator(ticket).validate(numbersAnnounced, claimMade)
+        assertFalse(result)
+    }
+
+    @Test
+    fun `player made claim of full house after missing to claim immediately after crossing all the elements should be rejected`() {
+        val ticket = listOf(
+            listOf(4, 16, 48, 63, 76),
+            listOf(7, 23, 38, 52, 80),
+            listOf(9, 25, 56, 64, 83)
+        )
+
+        val numbersAnnounced = listOf(11, 12, 4, 23, 38, 23, 24, 25, 47, 48, 7, 16, 9, 52, 56, 57, 64, 60, 63, 76, 77, 79, 80, 83, 3)
+        val claimMade = FULL_HOUSE
+
+        val result = ClaimValidator(ticket).validate(numbersAnnounced, claimMade)
+        assertFalse(result)
+    }
+
+    @Test
+    fun `player made false claim of full house should be rejected`() {
+        val ticket = listOf(
+            listOf(4, 16, 48, 63, 76),
+            listOf(7, 23, 38, 52, 80),
+            listOf(9, 25, 56, 64, 83)
+        )
+
+        val numbersAnnounced = listOf(1, 2, 3, 4, 5, 6)
+        val claimMade = FULL_HOUSE
 
         val result = ClaimValidator(ticket).validate(numbersAnnounced, claimMade)
         assertFalse(result)
