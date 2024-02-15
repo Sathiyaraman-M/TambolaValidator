@@ -12,4 +12,9 @@ object Constants {
         const val FIVE = 5
     }
 
+    object TicketConstants {
+        const val TOP_ROW_INDEX = NumericConstants.ZERO
+        const val BOTTOM_ROW_INDEX = NumericConstants.TWO
+    }
+
 }
