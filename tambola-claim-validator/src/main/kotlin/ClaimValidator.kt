@@ -1,7 +1,9 @@
 import Constants.ClaimConstants.BOTTOM_ROW
 import Constants.ClaimConstants.FIRST_FIVE
+import Constants.ClaimConstants.FULL_HOUSE
 import Constants.ClaimConstants.MIDDLE_ROW
 import Constants.ClaimConstants.TOP_ROW
+import Constants.NumericConstants.FIFTEEN
 import Constants.NumericConstants.FIVE
 import Constants.NumericConstants.ONE
 import Constants.NumericConstants.ZERO
@@ -87,12 +89,28 @@ class ClaimValidator(ticket: List<List<Int>>) {
         return false
     }
 
+    private fun fullHouseValidator(numbersAnnounced: List<Int>): Boolean {
+        var count = ZERO
+
+        numbersAnnounced.forEachIndexed { index, value ->
+            if (value in allElements) {
+                count++
+            }
+            if (count == FIFTEEN) {
+                return index == (numbersAnnounced.size - ONE)
+            }
+        }
+
+        return false
+    }
+
     fun validate(numbersAnnounced: List<Int>, claim: String) =
         when (claim) {
             TOP_ROW -> topRowValidator(numbersAnnounced)
             MIDDLE_ROW -> middleRowValidator(numbersAnnounced)
             BOTTOM_ROW -> bottomRowValidator(numbersAnnounced)
             FIRST_FIVE -> firstFiveValidator(numbersAnnounced)
+            FULL_HOUSE -> fullHouseValidator(numbersAnnounced)
             else -> throw Exception("Invalid claim made")
         }
 
