@@ -4,6 +4,7 @@ object Constants {
         const val MIDDLE_ROW = "MIDDLE_ROW"
         const val BOTTOM_ROW = "BOTTOM_ROW"
         const val FIRST_FIVE = "FIRST_FIVE"
+        const val FULL_HOUSE = "FULL_HOUSE"
     }
 
     object NumericConstants {
