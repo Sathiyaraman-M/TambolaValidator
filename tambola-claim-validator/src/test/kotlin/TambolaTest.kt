@@ -37,6 +37,21 @@ class TambolaTest {
         assertFalse(result)
     }
 
+    @Test
+    fun `player made false claim of top row should be rejected`() {
+        val ticket = listOf(
+            listOf(4, 16, 48, 63, 76),
+            listOf(7, 23, 38, 52, 80),
+            listOf(9, 25, 56, 64, 83)
+        )
+
+        val numbersAnnounced = listOf(1, 2, 3, 4, 5, 6)
+        val claimMade = TOP_ROW
+
+        val result = ClaimValidator(ticket).validate(numbersAnnounced, claimMade)
+        assertFalse(result)
+    }
+
 
     @Test
     fun `player made claim of bottom row immediately after crossing all the elements of bottom row should be accepted`() {
@@ -69,6 +84,21 @@ class TambolaTest {
     }
 
     @Test
+    fun `player made false claim of bottom row should be rejected`() {
+        val ticket = listOf(
+            listOf(4, 16, 48, 63, 76),
+            listOf(7, 23, 38, 52, 80),
+            listOf(9, 25, 56, 64, 83)
+        )
+
+        val numbersAnnounced = listOf(1, 2, 3, 4, 5, 6)
+        val claimMade = BOTTOM_ROW
+
+        val result = ClaimValidator(ticket).validate(numbersAnnounced, claimMade)
+        assertFalse(result)
+    }
+
+    @Test
     fun `player made claim of first five immediately after crossing the first five elements should be accepted`() {
         val ticket = listOf(
             listOf(4, 16, 48, 63, 76),
@@ -92,6 +122,21 @@ class TambolaTest {
         )
 
         val numbersAnnounced = listOf(4, 7, 9, 16, 22, 99, 25, 1, 2, 3)
+        val claimMade = FIRST_FIVE
+
+        val result = ClaimValidator(ticket).validate(numbersAnnounced, claimMade)
+        assertFalse(result)
+    }
+
+    @Test
+    fun `player made false claim of first five should be rejected`() {
+        val ticket = listOf(
+            listOf(4, 16, 48, 63, 76),
+            listOf(7, 23, 38, 52, 80),
+            listOf(9, 25, 56, 64, 83)
+        )
+
+        val numbersAnnounced = listOf(1, 2, 3, 4, 5, 6)
         val claimMade = FIRST_FIVE
 
         val result = ClaimValidator(ticket).validate(numbersAnnounced, claimMade)
