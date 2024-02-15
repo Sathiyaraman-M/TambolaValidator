@@ -1,3 +1,7 @@
+import Constants.ClaimConstants.BOTTOM_ROW
+import Constants.ClaimConstants.FIRST_FIVE
+import Constants.ClaimConstants.TOP_ROW
+
 class ClaimValidator(ticket: List<List<Int>>) {
 
     private val topRowElements = ticket[0].toSet()
@@ -61,9 +65,9 @@ class ClaimValidator(ticket: List<List<Int>>) {
 
     fun validate(numbersAnnounced: List<Int>, claim: String): Boolean {
         return when (claim) {
-            "TOP_ROW" -> topRowValidator(numbersAnnounced)
-            "BOTTOM_ROW" -> bottomRowValidator(numbersAnnounced)
-            "FIRST_FIVE" -> firstFiveValidator(numbersAnnounced)
+            TOP_ROW -> topRowValidator(numbersAnnounced)
+            BOTTOM_ROW -> bottomRowValidator(numbersAnnounced)
+            FIRST_FIVE -> firstFiveValidator(numbersAnnounced)
             else -> false
         }
     }
