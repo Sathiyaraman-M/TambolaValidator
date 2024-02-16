@@ -7,16 +7,14 @@ import Constants.TicketConstants.BOTTOM_ROW_INDEX
 import Constants.TicketConstants.MIDDLE_ROW_INDEX
 import Constants.TicketConstants.TOP_ROW_INDEX
 
-class ClaimValidator(private val ticket: List<List<Int>>) {
+class ClaimValidator {
 
-    private val topRowElements = ticket[TOP_ROW_INDEX].toSet()
-    private val middleRowElements = ticket[MIDDLE_ROW_INDEX].toSet()
-    private val bottomRowElements = ticket[BOTTOM_ROW_INDEX].toSet()
-
-    private val allElements = topRowElements + middleRowElements + bottomRowElements
-
-    private fun rowWiseValidator(row: Int, numbersAnnounced: List<Int>): Boolean {
+    private fun rowWiseValidator(ticket: TambolaTicket, row: Int, numbersAnnounced: List<Int>): Boolean {
         var count = 0
+
+        if(row !in 0..2) {
+            throw IndexOutOfBoundsException("Tambola tickets only has 3 rows from 0 to 2")
+        }
 
         numbersAnnounced.forEachIndexed { index, value ->
             if (value in ticket[row]) {
@@ -30,11 +28,11 @@ class ClaimValidator(private val ticket: List<List<Int>>) {
         return false
     }
 
-    private fun firstFiveValidator(numbersAnnounced: List<Int>): Boolean {
+    private fun firstFiveValidator(ticket: TambolaTicket, numbersAnnounced: List<Int>): Boolean {
         var count = 0
 
         numbersAnnounced.forEachIndexed { index, value ->
-            if (value in allElements) {
+            if (value in ticket.allElements) {
                 count++
             }
             if (count == 5) {
@@ -45,11 +43,11 @@ class ClaimValidator(private val ticket: List<List<Int>>) {
         return false
     }
 
-    private fun fullHouseValidator(numbersAnnounced: List<Int>): Boolean {
+    private fun fullHouseValidator(ticket: TambolaTicket, numbersAnnounced: List<Int>): Boolean {
         var count = 0
 
         numbersAnnounced.forEachIndexed { index, value ->
-            if (value in allElements) {
+            if (value in ticket.allElements) {
                 count++
             }
             if (count == 15) {
@@ -60,13 +58,13 @@ class ClaimValidator(private val ticket: List<List<Int>>) {
         return false
     }
 
-    fun validate(numbersAnnounced: List<Int>, claim: String) =
+    fun validate(ticket: TambolaTicket, numbersAnnounced: List<Int>, claim: String) =
         when (claim) {
-            TOP_ROW -> rowWiseValidator(TOP_ROW_INDEX,numbersAnnounced)
-            MIDDLE_ROW -> rowWiseValidator(MIDDLE_ROW_INDEX, numbersAnnounced)
-            BOTTOM_ROW -> rowWiseValidator(BOTTOM_ROW_INDEX, numbersAnnounced)
-            FIRST_FIVE -> firstFiveValidator(numbersAnnounced)
-            FULL_HOUSE -> fullHouseValidator(numbersAnnounced)
+            TOP_ROW -> rowWiseValidator(ticket, TOP_ROW_INDEX,numbersAnnounced)
+            MIDDLE_ROW -> rowWiseValidator(ticket, MIDDLE_ROW_INDEX, numbersAnnounced)
+            BOTTOM_ROW -> rowWiseValidator(ticket, BOTTOM_ROW_INDEX, numbersAnnounced)
+            FIRST_FIVE -> firstFiveValidator(ticket, numbersAnnounced)
+            FULL_HOUSE -> fullHouseValidator(ticket, numbersAnnounced)
             else -> throw Exception("Invalid claim made")
         }
 

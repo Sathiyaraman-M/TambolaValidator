@@ -1,3 +1,3 @@
 fun main() {
-    ClaimValidator(ticket = listOf(listOf(1, 2, 3), listOf(1, 2, 3), listOf(1, 2, 3))).validate(numbersAnnounced = listOf(), "CLAAAIM")
+    ClaimValidator().validate(TambolaTicket(setOf(1, 2, 3, 4, 5), setOf(1, 2, 3, 4, 5), setOf(1, 2, 3, 4, 5)), numbersAnnounced = listOf(), "CLAAAIM")
 }
