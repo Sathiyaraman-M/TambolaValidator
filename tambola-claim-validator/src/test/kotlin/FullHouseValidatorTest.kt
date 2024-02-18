@@ -16,4 +16,20 @@ class FullHouseValidatorTest {
         val result = validator.validate(ticket, announcedNumbers)
         Assertions.assertEquals(true, result)
     }
+
+    @Test
+    fun `player made claim of full house after missing to claim immediately after crossing all the elements should be rejected`() {
+        validator = FullHouseValidator()
+        val announcedNumbers = listOf(11, 12, 4, 23, 38, 21, 24, 25, 47, 48, 7, 16, 9, 52, 56, 57, 64, 60, 63, 76, 77, 79, 80, 83, 3)
+        val result = validator.validate(ticket, announcedNumbers)
+        Assertions.assertEquals(false, result)
+    }
+
+    @Test
+    fun `player made false claim of full house should be rejected`() {
+        validator = FullHouseValidator()
+        val announcedNumbers = listOf(11, 12, 4, 23, 38, 21)
+        val result = validator.validate(ticket, announcedNumbers)
+        Assertions.assertEquals(false, result)
+    }
 }
