@@ -15,6 +15,18 @@ class TambolaTicketTest {
     }
 
     @Test
+    fun `a tambola ticket should be able to created using tambola ticket rows`() {
+        val ticket = TambolaTicket(
+            TambolaTicketRow(4, 16, 48, 63, 76),
+            TambolaTicketRow(7, 23, 38, 52, 80),
+            TambolaTicketRow(9, 25, 56, 64, 83),
+        )
+        assertEquals(setOf(4, 16, 48, 63, 76), ticket.topRow)
+        assertEquals(setOf(7, 23, 38, 52, 80), ticket.middleRow)
+        assertEquals(setOf(9, 25, 56, 64, 83), ticket.bottomRow)
+    }
+
+    @Test
     fun `should get all the elements of the ticket`() {
         val ticket = TambolaTicket(
             setOf(4, 16, 48, 63, 76),

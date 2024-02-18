@@ -1,4 +1,8 @@
 data class TambolaTicket(val topRow: Set<Int>, val middleRow: Set<Int>, val bottomRow: Set<Int>) {
+
+    constructor(topRow: TambolaTicketRow, middleRow: TambolaTicketRow, bottomRow: TambolaTicketRow)
+            : this(topRow.getRowElements(), middleRow.getRowElements(), bottomRow.getRowElements())
+
     val allElements = topRow + middleRow + bottomRow
 
     operator fun get(i: Int): Set<Int> {
