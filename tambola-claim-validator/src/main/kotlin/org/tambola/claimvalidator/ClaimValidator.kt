@@ -8,9 +8,11 @@ import org.tambola.claimvalidator.Constants.ClaimConstants.TOP_ROW
 import org.tambola.claimvalidator.Constants.TicketConstants.BOTTOM_ROW_INDEX
 import org.tambola.claimvalidator.Constants.TicketConstants.MIDDLE_ROW_INDEX
 import org.tambola.claimvalidator.Constants.TicketConstants.TOP_ROW_INDEX
+import org.tambola.claimvalidator.ticket.TambolaTicket
 
+@Deprecated("Use IValidator-based implementations instead")
 class ClaimValidator {
-
+    @Deprecated("Use row-specific validators instead, such as TopRowValidator, MiddleRowValidator and BottomRowValidator")
     private fun rowWiseValidator(ticket: TambolaTicket, row: Int, numbersAnnounced: List<Int>): Boolean {
         var count = 0
 
@@ -30,6 +32,7 @@ class ClaimValidator {
         return false
     }
 
+    @Deprecated("Use EarlyFiveValidator class instead")
     private fun firstFiveValidator(ticket: TambolaTicket, numbersAnnounced: List<Int>): Boolean {
         var count = 0
 
@@ -44,6 +47,8 @@ class ClaimValidator {
 
         return false
     }
+
+    @Deprecated("Use FullHouseValidator class instead")
 
     private fun fullHouseValidator(ticket: TambolaTicket, numbersAnnounced: List<Int>): Boolean {
         var count = 0

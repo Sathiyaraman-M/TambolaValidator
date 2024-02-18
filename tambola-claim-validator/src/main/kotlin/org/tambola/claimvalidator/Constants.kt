@@ -1,5 +1,6 @@
 package org.tambola.claimvalidator
 
+@Deprecated(message = "These constants are used only in the ClaimValidator class which is marked deprecated in favour of new IValidator-based implementations")
 object Constants {
     object ClaimConstants {
         const val TOP_ROW = "TOP_ROW"
