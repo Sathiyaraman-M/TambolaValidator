@@ -1,11 +1,13 @@
-import Constants.ClaimConstants.BOTTOM_ROW
-import Constants.ClaimConstants.FIRST_FIVE
-import Constants.ClaimConstants.FULL_HOUSE
-import Constants.ClaimConstants.MIDDLE_ROW
-import Constants.ClaimConstants.TOP_ROW
-import Constants.TicketConstants.BOTTOM_ROW_INDEX
-import Constants.TicketConstants.MIDDLE_ROW_INDEX
-import Constants.TicketConstants.TOP_ROW_INDEX
+package org.tambola.claimvalidator
+
+import org.tambola.claimvalidator.Constants.ClaimConstants.BOTTOM_ROW
+import org.tambola.claimvalidator.Constants.ClaimConstants.FIRST_FIVE
+import org.tambola.claimvalidator.Constants.ClaimConstants.FULL_HOUSE
+import org.tambola.claimvalidator.Constants.ClaimConstants.MIDDLE_ROW
+import org.tambola.claimvalidator.Constants.ClaimConstants.TOP_ROW
+import org.tambola.claimvalidator.Constants.TicketConstants.BOTTOM_ROW_INDEX
+import org.tambola.claimvalidator.Constants.TicketConstants.MIDDLE_ROW_INDEX
+import org.tambola.claimvalidator.Constants.TicketConstants.TOP_ROW_INDEX
 
 class ClaimValidator {
 

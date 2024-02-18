@@ -1,3 +1,5 @@
+package org.tambola.claimvalidator.ticket
+
 data class TambolaTicket(val topRow: Set<Int>, val middleRow: Set<Int>, val bottomRow: Set<Int>) {
 
     constructor(topRow: TambolaTicketRow, middleRow: TambolaTicketRow, bottomRow: TambolaTicketRow)

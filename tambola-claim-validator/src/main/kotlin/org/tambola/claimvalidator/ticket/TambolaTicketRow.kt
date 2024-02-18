@@ -1,3 +1,5 @@
+package org.tambola.claimvalidator.ticket
+
 class TambolaTicketRow(
     private val value1: Int,
     private val value2: Int,

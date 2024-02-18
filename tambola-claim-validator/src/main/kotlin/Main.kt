@@ -1,4 +1,6 @@
-import Constants.ClaimConstants.TOP_ROW
+import org.tambola.claimvalidator.Constants.ClaimConstants.TOP_ROW
+import org.tambola.claimvalidator.ClaimValidator
+import org.tambola.claimvalidator.ticket.TambolaTicket
 
 fun main() {
     val ticket = TambolaTicket(setOf(1, 2, 3, 4, 5), setOf(1, 2, 3, 4, 5), setOf(1, 2, 3, 4, 5))

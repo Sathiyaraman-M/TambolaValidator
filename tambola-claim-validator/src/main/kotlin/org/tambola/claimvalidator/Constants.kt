@@ -1,3 +1,5 @@
+package org.tambola.claimvalidator
+
 object Constants {
     object ClaimConstants {
         const val TOP_ROW = "TOP_ROW"

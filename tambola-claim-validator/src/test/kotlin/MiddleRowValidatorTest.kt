@@ -1,5 +1,9 @@
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
+import org.tambola.claimvalidator.validators.IValidator
+import org.tambola.claimvalidator.validators.MiddleRowValidator
+import org.tambola.claimvalidator.ticket.TambolaTicket
+import org.tambola.claimvalidator.ticket.TambolaTicketRow
 
 class MiddleRowValidatorTest {
     private lateinit var validator: IValidator
