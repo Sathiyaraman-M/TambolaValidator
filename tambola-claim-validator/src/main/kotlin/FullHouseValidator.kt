@@ -1,12 +1,12 @@
 class FullHouseValidator : IValidator {
     override fun validate(ticket: TambolaTicket, announcedValues: List<Int>): Boolean {
-        val countedElements = mutableSetOf<Int>()
+        var count = 0
 
         announcedValues.forEachIndexed { index, value ->
             if (value in ticket.allElements) {
-                countedElements += value
+                count++
             }
-            if (countedElements.size == 15) {
+            if (count == 15) {
                 return index == (announcedValues.size - 1)
             }
         }
