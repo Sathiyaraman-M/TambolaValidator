@@ -20,4 +20,20 @@ class BottomRowValidatorTest {
         val result = validator.validate(ticket, announcedNumbers)
         Assertions.assertEquals(true, result)
     }
+
+    @Test
+    fun `player made claim of bottom row after failing to immediately after crossing all the elements of bottom row should be rejected`() {
+        validator = BottomRowValidator()
+        val announcedNumbers = listOf(90, 9, 44, 45, 25, 64, 22, 56, 88, 83, 12)
+        val result = validator.validate(ticket, announcedNumbers)
+        Assertions.assertEquals(false, result)
+    }
+
+    @Test
+    fun `player made false claim of bottom row should be rejected`() {
+        validator = BottomRowValidator()
+        val announcedNumbers = listOf(1, 2, 3, 5, 6)
+        val result = validator.validate(ticket, announcedNumbers)
+        Assertions.assertEquals(false, result)
+    }
 }
