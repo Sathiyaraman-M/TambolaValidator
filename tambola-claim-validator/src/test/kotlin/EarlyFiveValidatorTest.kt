@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Test
 class EarlyFiveValidatorTest {
     private lateinit var validator: IValidator
     private val ticket = TambolaTicket(
-        setOf(4, 16, 48, 63, 76),
-        setOf(7, 23, 38, 52, 80),
-        setOf(9, 25, 56, 64, 83)
+        TambolaTicketRow(4, 16, 48, 63, 76),
+        TambolaTicketRow(7, 23, 38, 52, 80),
+        TambolaTicketRow(9, 25, 56, 64, 83)
     )
 
     @Test
